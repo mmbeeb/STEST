@@ -6,6 +6,8 @@ I have been running this in Cygwin64, whilst running BeebEm in Windows 10.
 
 I've modified the following BeebEm files with the hope of fixing some issues I found:
 
+(All changes are after a #ifdef _MM_.)
+
 serial.cpp
 
 serialdevices.cpp
