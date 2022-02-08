@@ -19,7 +19,7 @@ Some of the issues are:
 
 serialdevices.cpp
 =================
-1)Conflict between threads using IP232Write (data into buffer) & IP232Read (data from buffer).
+1)Conflict between threads using IP232Write (data into buffer) & IP232Read (data from buffer) leading to corruption of data pointers.
 Fix: Use Critical Sections.
 
 2)Infrequent updates to other side of the nRTS flag state.
