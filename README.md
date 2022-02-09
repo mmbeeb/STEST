@@ -1,12 +1,10 @@
 # STEST
-BeebEm serial tester
+BeebEm serial tester (Linux).
 
 Tester for BeebEm's IP232 serial port option, including handshake.
-I have been running this in Cygwin64, whilst running BeebEm in Windows 10.
+I have been running STEST in Cygwin64, using a Windows 10 machine.
 
 I've modified the following BeebEm files with the hope of fixing some issues I found:
-
-(All changes are after a #ifdef _ MM _.)
 
 serial.cpp
 
@@ -14,12 +12,13 @@ serialdevices.cpp
 
 serialdevices.h
 
+***
 
 Some of the issues are:
 
 serialdevices.cpp
 =================
-1)Conflict between threads using IP232Write (data into buffer) & IP232Read (data from buffer) leading to corruption of data pointers.
+1)Conflict between threads writing to/reading from the data buffers leading to corruption of data pointers.
 Fix: Use Critical Sections.
 
 2)Infrequent updates to other side of the nRTS flag state.
@@ -37,7 +36,7 @@ There is a lag between the flag being set, and this being transmitted to the oth
 Any data already sent can be lost.
 Fix:Data not read from buffer if nRTS is high.
 
-_serial test.ssd
+_ serial test.ssd
 ================
 Disc image containing some simple test routines.
 
@@ -45,7 +44,7 @@ Example: Compile & run STEST (in say a Cygwin64 window).
 
 Open BeebEm.
 
-In Comms\RS423 Destination menu select IP:localhost25232 & IP:IP232 Handshake (Raw should be unticked).
+In Comms\RS423 Destination menu select IP:localhost25232 & IP:IP232 Handshake (IP:Raw comms should be unselected).
 
 In Comms menu enable RS423.
 
